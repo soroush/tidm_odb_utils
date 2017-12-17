@@ -27,7 +27,7 @@ tidm::odb_async_worker::odb_async_worker()
 
 void tidm::odb_async_worker::init(odb::database *db,
                                   const odb_worker_param &prm,
-                                  std::function<void(tidm::exception)>  handler) throw(tidm::exception)
+                                  std::function<void(tidm::exception)>  handler)
 
 {
 

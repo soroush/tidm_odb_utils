@@ -59,7 +59,7 @@ class odb_worker_base {
         virtual ~odb_worker_base() = default;
         virtual void init(odb::database *db,
                           const odb_worker_param &prm,
-                          std::function<void(tidm::exception)>handler) throw(tidm::exception);
+                          std::function<void(tidm::exception)>handler) ;
         virtual void worker() = 0;
         virtual odb_stat get_stat() throw();
         void finalize() throw();
@@ -89,7 +89,7 @@ class odb_worker: public odb_worker_base {
         void init(odb::database *db,
                   const odb_worker_param &prm,
                   std::function<void(tidm::exception)>  handler
-                 ) throw(tidm::exception) {
+                 )  {
             odb_worker_base::init(db, prm, handler);
         }
 
@@ -100,7 +100,7 @@ class odb_worker: public odb_worker_base {
                   std::function<void(tidm::exception)>  handler,
                   std::function<void(const T &)> post_handler
 
-                 ) throw(tidm::exception) {
+                 )  {
             if(_state != state::NEW) {
                 throw tidm::exception(__FILE__, __FUNCTION__,
                                       "invalid odb_worker_base state(re-initialization or initialization of a finalized worker)");
@@ -145,7 +145,7 @@ class odb_worker: public odb_worker_base {
             }
             return temp;
         }
-        void persist(const T &obj)throw(tidm::exception) {
+        void persist(const T &obj) {
             if(_state != state::READY) {
                 throw tidm::exception(__FILE__, __FUNCTION__, "invalid use of un-initilized/finalized worker");
             }

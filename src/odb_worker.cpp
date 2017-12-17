@@ -46,7 +46,7 @@ odb_worker_base::odb_worker_base()
 
 void odb_worker_base::init(odb::database *db,
                            const odb_worker_param &prm,
-                           std::function<void(tidm::exception)>  handler) throw(tidm::exception)
+                           std::function<void(tidm::exception)>  handler)
 {
     if(_state != state::NEW) {
         throw tidm::exception(__FILE__, __FUNCTION__,

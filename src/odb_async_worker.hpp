@@ -26,7 +26,7 @@ namespace tidm {
 class odb_async_worker {
     public:
         odb_async_worker();
-        void init(odb::database *db, const odb_worker_param &prm, std::function<void(tidm::exception)>  handler) throw(tidm::exception);
+        void init(odb::database *db, const odb_worker_param &prm, std::function<void(tidm::exception)>  handler);
         odb_stat get_stat()throw();
 
         template<typename T>
@@ -52,7 +52,7 @@ class odb_async_worker {
 
         }
         template<typename T>
-        void persist(const T &obj)throw(tidm::exception) {
+        void persist(const T &obj) {
 
             if(_state != odb_worker_base::state::READY) {
                 throw tidm::exception(__FILE__, __FUNCTION__, "invalid use of un-initilized/finalized worker");
